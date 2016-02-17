@@ -1,6 +1,7 @@
 th {
     text-align: left;
     border: 1px solid black;
+    background-color: #f60;
 }
 
 tr:nth-child(even) {
