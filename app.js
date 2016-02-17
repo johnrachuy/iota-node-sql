@@ -29,6 +29,7 @@ app.get('/people', function(req, res) {
         // close connection
         query.on('end', function() {
             client.end();
+            //done();
             return res.json(results);
         });
 
@@ -47,10 +48,11 @@ app.post('/people', function(req, res) {
         zip: req.body.zip
     };
 
-    pg.connect(connectionString, function(err, client) {
+    pg.connect(connectionString, function(err, client, done) {
         client.query("INSERT INTO people (name, address, city, state, zip_code) VALUES ($1, $2, $3, $4, $5) RETURNING id",
             [addPerson.name, addPerson.address, addPerson.city, addPerson.state, addPerson.zip],
             function (err, result) {
+                done();
                 if(err) {
                     console.log("Error inserting data: ", err);
                     res.send(false);
