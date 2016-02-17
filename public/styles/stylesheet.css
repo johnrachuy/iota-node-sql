@@ -4,6 +4,6 @@ th {
     background-color: #f60;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
     background-color: lightgrey;
 }
