@@ -1,5 +1,7 @@
 $(document).ready(function() {
     $('#submit-button').on('click', postData);
+
+    getData();
 });
 
 function postData() {
@@ -33,8 +35,21 @@ function getData() {
     $.ajax({
         type: 'GET',
         url: '/people',
-        success: function(data) {
+        //success: function(data) {
+        //    console.log(data);
+        success: function(data){
             console.log(data);
+            totalToDom(data);
         }
     });
+}
+function totalToDom(peopleData){
+    //console.log("hi");
+    for (var person in peopleData) {
+
+        var per = peopleData[person];
+        //console.log(per);
+
+        $('#person-table').append('<tr>' + '<td>' + per.name + '</td>' + '<td>' + per.address + '</td>' + '<td>' + per.city + '</td>' + '<td>' + per.state + '</td>' + '<td>' + per.zip_code + '</td>' + '</tr>');
+    }
 }
