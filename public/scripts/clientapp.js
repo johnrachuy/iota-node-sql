@@ -14,6 +14,8 @@ function postData() {
 
     console.log(values);
 
+    $('input').val('');
+
     $.ajax({
         type: 'POST',
         url: '/people',
@@ -32,7 +34,7 @@ function postData() {
 }
 
 function getData() {
-    $('.people').remove();
+    $('.sql-data').remove();
     $.ajax({
         type: 'GET',
         url: '/people',
@@ -49,7 +51,6 @@ function totalToDom(peopleData){
         var per = peopleData[person];
         //console.log(per);
 
-        $('#sql-form').find('input[type=text]').val('');
-        $('#person-table').append('<tr class="people">' + '<td>' + per.name + '</td>' + '<td>' + per.address + '</td>' + '<td>' + per.city + '</td>' + '<td>' + per.state + '</td>' + '<td>' + per.zip_code + '</td>' + '</tr>');
+        $('#person-table').append('<tr class="sql-data"><td>' + per.name + '</td><td>' + per.address + '</td><td>' + per.city + '</td><td>' + per.state + '</td><td>' + per.zip_code + '</td></tr>');
     }
 }
